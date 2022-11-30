@@ -73,32 +73,75 @@ var total = 0;
 
 // Exercise 1
 function buy(id) {
-    console.log(id);
-    for(let i; i <= products; i++){
-
+    for(let i=0; i <= products.length; i++){
+        if(i==id){
+            cartList.push(products[i-1]);
+        }
     }
+    console.log(cartList);
+    
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
 }
 
 // Exercise 2
 function cleanCart() {
-
+    calculateTotal();
+    console.log(total);
+    //cartList.length = 0;
 }
 
 // Exercise 3
 function calculateTotal() {
+    applyPromotionsCart()
+    for(let i=0; i<=(cartList.length-1); i++){
+        total+=cartList[i].price; 
+    }
     // Calculate total price of the cart using the "cartList" array
 }
 
 // Exercise 4
 function generateCart() {
+    /*let i = 0;
+    for(i; i<=(cartList.length-1); i++){
+        const found = cartList.find(r=> cart.includes(r));
+        if(!found){
+            cart.push(cartList[i]);
+            cart[i].quantity=1;
+        }else{
+            //cart[i].quantity++;
+        }
+    }
+    console.log(cart);*/
+
+    //TEMPORAL
+
+    cart.push(products[0]);
+    cart[0].quantity=5;
+    cart.push(products[2]);
+    cart[1].quantity=2;
+    cart.push(products[5]);
+    cart[2].quantity=3;
+    cart.push(products[8]);
+    cart[3].quantity=10;
+    console.log(cart);
+
     // Using the "cartlist" array that contains all the items in the shopping cart, 
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
 }
 
 // Exercise 5
 function applyPromotionsCart() {
+    generateCart()
+    let i = 0;
+    for(i; i<=(cart.length-1); i++) {
+        if(cart[i].id == 1 && cart[i].quantity>=3){
+            cart[i].price = 10;
+        }else if(cart[i].id == 3 && cart[i].quantity>=10){
+            cart[i].price = 1.667;        
+        }
+    }
+
     // Apply promotions to each item in the array "cart"
 }
 
