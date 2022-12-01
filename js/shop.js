@@ -1,68 +1,68 @@
 // If you have time, you can move this variable "products" to a json or js file and load the data in this js. It will look more professional
 var products = [
-   {
-        id: 1,
-        name: 'cooking oil',
-        price: 10.5,
-        type: 'grocery',
-        offer: {
-            number: 3,
-            percent: 20
-        }
+  {
+    id: 1,
+    name: "cooking oil",
+    price: 10.5,
+    type: "grocery",
+    offer: {
+      number: 3,
+      percent: 20,
     },
-    {
-        id: 2,
-        name: 'Pasta',
-        price: 6.25,
-        type: 'grocery'
+  },
+  {
+    id: 2,
+    name: "Pasta",
+    price: 6.25,
+    type: "grocery",
+  },
+  {
+    id: 3,
+    name: "Instant cupcake mixture",
+    price: 5,
+    type: "grocery",
+    offer: {
+      number: 10,
+      percent: 30,
     },
-    {
-        id: 3,
-        name: 'Instant cupcake mixture',
-        price: 5,
-        type: 'grocery',
-        offer: {
-            number: 10,
-            percent: 30
-        }
-    },
-    {
-        id: 4,
-        name: 'All-in-one',
-        price: 260,
-        type: 'beauty'
-    },
-    {
-        id: 5,
-        name: 'Zero Make-up Kit',
-        price: 20.5,
-        type: 'beauty'
-    },
-    {
-        id: 6,
-        name: 'Lip Tints',
-        price: 12.75,
-        type: 'beauty'
-    },
-    {
-        id: 7,
-        name: 'Lawn Dress',
-        price: 15,
-        type: 'clothes'
-    },
-    {
-        id: 8,
-        name: 'Lawn-Chiffon Combo',
-        price: 19.99,
-        type: 'clothes'
-    },
-    {
-        id: 9,
-        name: 'Toddler Frock',
-        price: 9.99,
-        type: 'clothes'
-    }
-]
+  },
+  {
+    id: 4,
+    name: "All-in-one",
+    price: 260,
+    type: "beauty",
+  },
+  {
+    id: 5,
+    name: "Zero Make-up Kit",
+    price: 20.5,
+    type: "beauty",
+  },
+  {
+    id: 6,
+    name: "Lip Tints",
+    price: 12.75,
+    type: "beauty",
+  },
+  {
+    id: 7,
+    name: "Lawn Dress",
+    price: 15,
+    type: "clothes",
+  },
+  {
+    id: 8,
+    name: "Lawn-Chiffon Combo",
+    price: 19.99,
+    type: "clothes",
+  },
+  {
+    id: 9,
+    name: "Toddler Frock",
+    price: 9.99,
+    type: "clothes",
+  },
+];
 // Array with products (objects) added directly with push(). Products in this array are repeated.
 var cartList = [];
 
@@ -73,100 +73,86 @@ var total = 0;
 
 // Exercise 1
 function buy(id) {
-    for(let i=0; i <= products.length; i++){
-        if(i==id){
-            cartList.push(products[i-1]);
-        }
+  for (let i = 0; i <= products.length; i++) {
+    if (i == id) {
+      cartList.push(products[i - 1]);
     }
-    console.log(cartList);
-    
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cartList array
+  }
+  console.log(cartList);
+  // 1. Loop for to the array products to get the item to add to cart
+  // 2. Add found product to the cartList array
 }
 
 // Exercise 2
 function cleanCart() {
-    calculateTotal();
-    console.log(total);
-    //cartList.length = 0;
+  calculateTotal();
+  console.log(total);
+  //cartList.length = 0;
 }
 
 // Exercise 3
 function calculateTotal() {
-    applyPromotionsCart()
-    for(let i=0; i<=(cartList.length-1); i++){
-        total+=cartList[i].price; 
-    }
-    // Calculate total price of the cart using the "cartList" array
+  generateCart();
+  applyPromotionsCart();
+  for (let i = 0; i <= cart.length-1; i++) {
+    total += cart[i].quantity*cart[i].price;
+    console.log(cart[i].quantity);
+    console.log(cart[i].price);
+  }
+  // Calculate total price of the cart using the "cartList" array
 }
 
 // Exercise 4
 function generateCart() {
-    /*let i = 0;
-    for(i; i<=(cartList.length-1); i++){
-        const found = cartList.find(r=> cart.includes(r));
-        if(!found){
-            cart.push(cartList[i]);
-            cart[i].quantity=1;
-        }else{
-            //cart[i].quantity++;
-        }
+  cartList.forEach((item) => {
+    let finalItem = cart.find((it) => it.id === item.id);
+    if (finalItem) {
+      finalItem.quantity += 1;
+    } else {
+      finalItem = { ...item, quantity: 1 };
+      cart.push(finalItem);
     }
-    console.log(cart);*/
+  });
 
-    //TEMPORAL
-
-    cart.push(products[0]);
-    cart[0].quantity=5;
-    cart.push(products[2]);
-    cart[1].quantity=2;
-    cart.push(products[5]);
-    cart[2].quantity=3;
-    cart.push(products[8]);
-    cart[3].quantity=10;
-    console.log(cart);
-
-    // Using the "cartlist" array that contains all the items in the shopping cart, 
-    // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+  // Using the "cartlist" array that contains all the items in the shopping cart,
+  // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
 }
 
 // Exercise 5
 function applyPromotionsCart() {
-    generateCart()
-    let i = 0;
-    for(i; i<=(cart.length-1); i++) {
-        if(cart[i].id == 1 && cart[i].quantity>=3){
-            cart[i].price = 10;
-        }else if(cart[i].id == 3 && cart[i].quantity>=10){
-            cart[i].price = 1.667;        
-        }
-    }
-
-    // Apply promotions to each item in the array "cart"
+  let discountOil = cart.find((it) => it.id === 1 && it.quantity >= 3);
+  if (discountOil) {
+    discountOil.price = 10;
+  }
+  let discountCake = cart.find((it) => it.id === 3 && it.quantity >= 10);
+  if (discountCake) {
+    discountCake.price = (2/3)*discountCake.price;
+  }
+  // Apply promotions to each item in the array "cart"
 }
 
 // Exercise 6
 function printCart() {
-    // Fill the shopping cart modal manipulating the shopping cart dom
+    
+  // Fill the shopping cart modal manipulating the shopping cart dom
 }
-
 
 // ** Nivell II **
 
 // Exercise 7
 function addToCart(id) {
-    // Refactor previous code in order to simplify it 
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+  // Refactor previous code in order to simplify it
+  // 1. Loop for to the array products to get the item to add to cart
+  // 2. Add found product to the cart array or update its quantity in case it has been added previously.
 }
 
 // Exercise 8
 function removeFromCart(id) {
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cartList array
+  // 1. Loop for to the array products to get the item to add to cart
+  // 2. Add found product to the cartList array
 }
 
-function open_modal(){
-	console.log("Open Modal");
-	printCart();
+function open_modal() {
+  console.log("Open Modal");
+  printCart();
 }
