@@ -1,6 +1,24 @@
 
 // Exercise 6
 function validate() {
+	//Fetch forms
+	var forms = document.querySelectorAll('.needs-validation');
+	
+	// Validate fields entered by the user: name, phone, password, and email
+	Array.prototype.slice.call(forms).forEach((form) => {
+		form.addEventListener('submit', (event) => {
+		  if (!form.checkValidity()) {
+			event.preventDefault();
+			event.stopPropagation();
+		  }
+		  
+		  form.classList.add('was-validated');
+		}, false);
+	  });
+}
+
+/*
+
 	var error = 0;
 	// Get the input fields
 	var fName = document.getElementById("fName");
@@ -29,9 +47,9 @@ function validate() {
 	
 	let isMail = fEmail.value.includes("@");
 
-	// Validate fields entered by the user: name, phone, password, and email
 	if(fName.value == "" || fName.value.length < 3 || !onlyLetters(fName.value)){
 		error++;
+
 	}
 
 	if(fLastN.value == "" || fLastN.value.length < 3){
@@ -55,8 +73,8 @@ function validate() {
 	}
 
 	if(error>0){
-		alert("Error");
+		//alert("Error");
 	}else{
-		alert("OK");
+		//alert("OK");
 	}
-}
+*/

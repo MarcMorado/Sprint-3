@@ -71,6 +71,7 @@ var products = [
   
   var total = 0;
   
+  var quant = 0;
   // Exercise 1
   function buy(id) {
     for (let i = 0; i <= products.length; i++) {
@@ -95,7 +96,7 @@ var products = [
   
   // Exercise 3
   function calculateTotal() {
-    generateCart();
+    //generateCart();
     applyPromotionsCart();
     for (let i = 0; i <= cart.length-1; i++) {
       total += cart[i].quantity*cart[i].price;
@@ -166,6 +167,24 @@ var products = [
   
   // Exercise 7
   function addToCart(id) {
+    products.forEach((product)=>{
+      if(product.id==id){
+          let finalItem = cart.find((it) => it.id === product.id);
+        if (finalItem) {
+          finalItem.quantity += 1;
+        } else {
+          finalItem = { ...product, quantity: 1, totalPrice: 0};
+          cart.push(finalItem);
+        }
+      }
+    });
+
+    //numero de productos en carrito
+    let holder = 0;
+    cart.forEach((item)=>{
+      holder += item.quantity;
+    });
+    document.getElementById("count_product").innerHTML = holder + quant;
     // Refactor previous code in order to simplify it
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
@@ -173,6 +192,22 @@ var products = [
   
   // Exercise 8
   function removeFromCart(id) {
+    let pos = 0;
+    cart.forEach((item)=>{
+      pos ++;
+      if(item.id==id && item.quantity>=2){
+        item.quantity -= 1;
+      }else if(item.id==id){
+        cart.splice((pos-1),1);
+      }
+    });
+
+    //numero de productos en carrito
+    let holder = 0;
+    cart.forEach((item)=>{
+      holder -= item.quantity;
+    });
+    document.getElementById("count_product").innerHTML =  quant - holder;
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
   }
