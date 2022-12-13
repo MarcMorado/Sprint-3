@@ -1,0 +1,27 @@
+.bgColor{
+  background: #212529f6;
+}
+
+.reveal{
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.reveal.active{
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+/*
+https://codepen.io/Cherielavettegray/details/MWVMoPp
+https://codepen.io/ThomasDaubenton/pen/poLavxJ
+https://codepen.io/frankenstein88-the-looper/details/PoaggWq
+https://codepen.io/Harisimran/pen/BarQOrq
+https://codepen.io/Abdel-Rahman/pen/GXmvrO
+https://codepen.io/evilpaper/pen/dyyZjLQ
+https://codepen.io/erkanerdil016/pen/LYdOpKj
+https://codepen.io/aderaaij/details/XWpMONO
+https://codepen.io/jcoulterdesign/pen/MWeZWxQ
+*/
